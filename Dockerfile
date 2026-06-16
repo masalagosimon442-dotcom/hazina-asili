@@ -40,9 +40,10 @@ RUN mkdir -p /var/www/html/assets/uploads/avatars \
 RUN chown -R www-data:www-data /var/www/html
 RUN chmod -R 755 /var/www/html/assets/uploads
 
-# Render uses dynamic PORT
-RUN sed -i 's/Listen 80/Listen ${PORT}/' /etc/apache2/ports.conf
-RUN sed -i 's/:80/:${PORT}/' /etc/apache2/sites-available/000-default.conf
+# Configure Apache to use PORT from environment variable
+RUN echo 'ServerName localhost' >> /etc/apache2/apache2.conf
+RUN sed -i 's/Listen 80/Listen 10000/' /etc/apache2/ports.conf
+RUN sed -i 's/:80/:10000/' /etc/apache2/sites-available/000-default.conf
 
 EXPOSE 10000
 
