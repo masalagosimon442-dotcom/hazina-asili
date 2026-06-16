@@ -1,5 +1,6 @@
 Options -Indexes
 ServerSignature Off
+DirectoryIndex index.php
 
 # Prevent direct access to config, model, and helper files
 <FilesMatch "\.(php)$">
@@ -20,8 +21,6 @@ ServerSignature Off
     Header always set X-XSS-Protection "1; mode=block"
     Header always set Referrer-Policy "strict-origin-when-cross-origin"
     Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
-    Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; font-src 'self' https://cdn.jsdelivr.net; img-src 'self' data: blob:; connect-src 'self'"
-    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains" env=HTTPS
 </IfModule>
 
 # Prevent access to sensitive files
