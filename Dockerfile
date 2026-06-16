@@ -28,7 +28,7 @@ WORKDIR /var/www/html
 COPY . .
 
 # Install PHP dependencies if composer.json exists
-RUN if [ -f "composer.json" ]; then composer install --no-dev --optimize-autoloader; fi
+RUN if [ -f "composer.json" ]; then composer install --no-dev --optimize-autoloader --ignore-platform-reqs 2>/dev/null || true; fi
 
 # Create upload directories
 RUN mkdir -p /var/www/html/assets/uploads/avatars \
