@@ -64,8 +64,9 @@ foreach ($stmt->fetchAll() as $r) {
 }
 
 // Search references (limit 3)
+$refTable = (defined('DB_DRIVER') && DB_DRIVER === 'pgsql') ? '"references"' : '`references`';
 $stmt = $db->prepare(
-    "SELECT id, title, author, year FROM "references"
+    "SELECT id, title, author, year FROM {$refTable}
      WHERE title LIKE ? OR author LIKE ?
      ORDER BY title LIMIT 3"
 );
